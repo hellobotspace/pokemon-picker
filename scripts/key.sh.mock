@@ -1,0 +1,5 @@
+export BOT_TOKEN=""
+export APPLICATION_ID=""
+export APPLICATION_PUBLIC_KEY=""
+export GUILD_ID=""
+

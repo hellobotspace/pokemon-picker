@@ -1,0 +1,3 @@
+name = "discord-bot-ts"
+main = "src/interactions-endpoint/index.ts"
+compatibility_date = "2023-04-01"
