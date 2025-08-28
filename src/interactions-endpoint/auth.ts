@@ -1,5 +1,5 @@
 import { verifyKey } from "discord-interactions";
-import { ModuleWorkerEnv } from "../evn";
+import { ModuleWorkerEnv } from "../env";
 
 export async function checkRequestSignature(request: Request, env: ModuleWorkerEnv) {
   // Using the incoming headers, verify this request actually came from discord.

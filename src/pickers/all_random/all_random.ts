@@ -2,7 +2,7 @@ import { Pokemon, pokemons } from "../data";
 import { randomlyPop } from "../../helpers";
 
 export function allRandom(): Pokemon[] {
-  const poks = [...pokemons];
+  const poks = [...pokemons]; // clone array
   const result: Pokemon[] = [];
 
   for (let i = 0; i < 10; ++i) {

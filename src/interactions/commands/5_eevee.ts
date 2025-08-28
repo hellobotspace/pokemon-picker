@@ -1,11 +1,11 @@
 import { parseOutput, poksToTable } from "./helpers";
 import { CommandType } from ".";
-import { allSameType } from "../../pickers";
+import { allEevee } from "../../pickers/5_eevee/5_eevee";
 import { createContainerWithText } from "../componentsV2/createContainerWithText";
 import { createResponseChannelMessage } from "../../discord/message";
 
-const name = "選角3";
-const description = "隨機2類型 5個同類型 (需要全角色模式)";
+const name = "選角5";
+const description = "10個伊步 (需要全角色模式)";
 
 export const command: CommandType = {
   data: { name, description },
@@ -13,7 +13,7 @@ export const command: CommandType = {
 };
 
 async function getResponse() {
-  const result = allSameType();
+  const result = allEevee();
   const content = parseOutput(description, poksToTable(result));
   const text = createContainerWithText(content).toJSON();
   return createResponseChannelMessage([text]);

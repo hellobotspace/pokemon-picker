@@ -3,16 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "start": "wrangler dev",
-    "deploy": "wrangler publish",
-    "register_guild": "tsc --outDir .tsbuild && node .tsbuild/register_guild.js",
-    "register_global": "tsc --outDir .tsbuild && node .tsbuild/register_global.js",
+    "deploy": "wrangler deploy",
+    "register_guild": "bash scripts/register_guild.sh",
+    "register_global": "bash scripts/register_global.sh",
     "test": "vitest"
   },
   "dependencies": {
+    "@discordjs/builders": "^1.11.3",
     "@discordjs/rest": "^1.7.0",
-    "discord-api-types": "^0.37.37",
+    "discord-api-types": "^0.38.21",
     "discord-interactions": "^3.0.0",
-    "discord.js": "^14.9.0",
+    "discord.js": "^14.22.1",
     "itty-router": "^2.5.1",
     "node-fetch": "^3.3.1"
   },
@@ -24,7 +25,8 @@
     "prettier": "^2.8.7",
     "typescript": "^5.0.4",
     "vitest": "^0.29.8",
-    "wrangler": "2.13.0"
+    "wrangler": "^4.32.0"
   },
-  "private": true
+  "private": true,
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

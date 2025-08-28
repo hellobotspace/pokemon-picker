@@ -1,39 +1,20 @@
-import { CommandType } from ".";
 import { parseOutput } from "./helpers";
+import { CommandType } from ".";
 import { random2Type } from "../../pickers/random_2_types/random_2_types";
-import { PokemonType } from "../../pickers/data";
-import {
-  APIApplicationCommandInteraction,
-  APIInteractionResponseChannelMessageWithSource,
-  InteractionResponseType,
-} from "discord-api-types/v10";
+import { pokemonTypeStrings } from "../../pickers/data";
+import { createContainerWithText } from "../componentsV2/createContainerWithText";
+import { createResponseChannelMessage } from "../../discord/message";
 
 const name = "隨機2類型";
 const description = "隨機2類型 (可以用Ban角模式)";
 
 export const command: CommandType = {
   data: { name, description },
-  async getResponse(
-    interaction: APIApplicationCommandInteraction
-  ): Promise<APIInteractionResponseChannelMessageWithSource> {
+  getResponse: async () => {
     const types = random2Type();
-    const typeStrings: Record<PokemonType, string> = {
-      [PokemonType.allRounder]: "平衡",
-      [PokemonType.attacker]: "攻擊",
-      [PokemonType.defender]: "防禦",
-      [PokemonType.supporter]: "輔助",
-      [PokemonType.speedster]: "敏捷",
-    };
-    const result = `${typeStrings[types[0]]} ${typeStrings[types[1]]}`;
+    const result = `${pokemonTypeStrings[types[0]]} ${pokemonTypeStrings[types[1]]}`;
     const content = parseOutput(description, result);
-    return {
-      type: InteractionResponseType.ChannelMessageWithSource,
-      data: {
-        tts: false,
-        content: content,
-        embeds: [],
-        allowed_mentions: { parse: [] },
-      },
-    };
+    const text = createContainerWithText(content).toJSON();
+    return createResponseChannelMessage([text]);
   },
 };

@@ -1,8 +1,8 @@
-import { evn } from "./evn";
+import { env } from "./env";
 import { REST, Routes } from "discord.js";
 import { commands } from "./interactions/commands";
 
-const rest = new REST({ version: "10" }).setToken(evn.BOT_TOKEN);
+const rest = new REST({ version: "10" }).setToken(env.BOT_TOKEN);
 
 // main
 
@@ -16,7 +16,7 @@ const rest = new REST({ version: "10" }).setToken(evn.BOT_TOKEN);
       return command.data;
     });
     console.log("----------------");
-    await rest.put(Routes.applicationCommands(evn.APPLICATION_ID), { body: body });
+    await rest.put(Routes.applicationCommands(env.APPLICATION_ID), { body: body });
 
     console.log("Successfully reloaded application (/) commands.");
   } catch (error) {

@@ -2,7 +2,7 @@ import { Pokemon } from "../../../pickers/data";
 
 export function parseOutput(title: string, body: string) {
   const result = title + `\n\n` + body + "\n";
-  return makeMarkdownCodeblock(result);
+  return result;
 }
 
 export function makeMarkdownCodeblock(s: string) {

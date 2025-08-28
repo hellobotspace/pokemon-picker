@@ -1,8 +1,8 @@
-import { Pokemon, getType2Poks, pokemonTypes } from "../data";
+import { Pokemon, getTypeToPoksMap, pokemonTypes } from "../data";
 import { getRandomInt, randomlyPop } from "../../helpers";
 
 export function fiveTypeMirror(): Pokemon[] {
-  var poks = getType2Poks();
+  var poks = getTypeToPoksMap();
 
   let result = Array<Pokemon>(10);
   for (let i = 0; i < 5; ) {

@@ -44,7 +44,7 @@ export function checkProbabilityValid(stats: ChiStat[], degreesOfFreedom: number
   for (const stat of stats) chiSquare += (stat.observed - stat.expected) ** 2 / stat.expected;
   const invChiSquare = getInvChiSquared(0.05, degreesOfFreedom || stats.length - 1);
   // if (chiSquare >= invChiSquare) console.log(chiSquare, invChiSquare);
-  console.log(chiSquare, invChiSquare);
+  console.log(chiSquare, invChiSquare, "chiSquare < invChiSquare", chiSquare < invChiSquare);
   return chiSquare < invChiSquare;
 }
 

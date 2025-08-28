@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getType2Poks } from "../data";
+import { getTypeToPoksMap } from "../data";
 import { checkProbabilityValid } from "../../helpers";
 import { TypeStats } from "../types";
 import { fiveTypeMirror } from "./five_types_mirror";
@@ -8,7 +8,7 @@ describe("five_types_mirror", () => {
   it("five_types_mirror", async () => {
     const testCount = 50000;
     const probs = getProbabilityEachType();
-    const poks = getType2Poks();
+    const poks = getTypeToPoksMap();
     let typeStats: TypeStats = {};
 
     for (const [pokType, poksByType] of Object.entries(poks)) {
@@ -43,7 +43,7 @@ describe("five_types_mirror", () => {
 });
 
 function getProbabilityEachType(): Record<string, number> {
-  const poks = getType2Poks();
+  const poks = getTypeToPoksMap();
   const typeLimit: Record<string, number> = {};
   for (const [k, v] of Object.entries(poks)) typeLimit[k] = Math.floor(v.length / 2);
   const typeFeqs: Record<string, number> = {};

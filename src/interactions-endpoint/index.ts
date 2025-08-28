@@ -1,5 +1,5 @@
 import { checkRequestSignature } from "./auth";
-import { ModuleWorkerEnv } from "../evn";
+import { ModuleWorkerEnv } from "../env";
 import { JsonResponse } from "./JsonResponse";
 import { commands } from "../interactions/commands";
 import {
@@ -48,18 +48,22 @@ async function handleInteraction(interaction: APIInteraction) {
 async function handleApplicationCommandInteraction(interaction: APIApplicationCommandInteraction): Promise<Response> {
   console.log("Handling Application Command request");
 
-  const command = commands.find((c) => c.data.name === interaction.data.name);
+  const command = commands.find((c) => {
+    const name = interaction.data.name.endsWith("-test") ? interaction.data.name.slice(0, -5) : interaction.data.name;
+    return name === c.data.name;
+  });
 
   // check command is undefined
   if (!command) {
     return new JsonResponse({
       type: InteractionResponseType.ChannelMessageWithSource,
       data: {
-        content: "undefined command",
+        content: "這個壞了",
       },
     });
   }
 
   const res = await command.getResponse(interaction);
+  console.log(JSON.stringify(res));
   return new JsonResponse(res);
 }
